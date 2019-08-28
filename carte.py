@@ -11,7 +11,6 @@ class Carte:
 	 		- un tableau fondCarte contenant la carte avec ces lettres
 	 		- 
 
-
 			 A besoin en entrée de l'id de la carte 
 	 """
     
