@@ -10,7 +10,11 @@ class Carte:
 			- un nom de fichier 
 	 		- un tableau fondCarte contenant la carte avec ces lettres
 	 		- 
+ss
+s
+s
 
+ss
 			 A besoin en entrée de l'id de la carte 
 	 """
     
