@@ -3,16 +3,23 @@
 
 """Ce fichier contient le code principal du jeu.
 	Exécutez-le avec Python pour lancer le jeu : python roboc.py
+
+    la class carte du fichier carte.py permet de piloter la carte avec tout ces déplament possible
+    le programme main roboc.py permet de gérer l'interface utilisateur, l'initialisation et le pilotage de la classe carte 
+
+    Pour améliorer la visibilité et facilité l'ouverture a d'autre méthode un découpage des méthodes liés aux déplacement a été effectué dans le fichier deplacement.py
 """
 
 import os
 import re
 import sys
 from carte import Carte
+import deplacement
 import pickle
 
 
 """
+Principe :
 - Etape 1 : Importe les cartes du répertoire ./cartes
 - Etape 2 : Présentation des cartes disponibles pour l'utilisateur
 - Etape 3 : Boucle pour demander le N° carte souhaité  et effectue le chargement
@@ -43,8 +50,10 @@ def lanceRoboc():
     
 	 # Etape 3 : Boucle pour demander le N° carte 
 	 # - si Q on sort 
-	 # - Si c'est un chiffre & qu'il y a une carte en correspondance alors on charge la sauvegarde si elle existe sinon on initialise une nouvelle carte
-	 # - 
+	 # - Si c'est un chiffre & qu'il y a une partie en correspondance alors on charge la sauvegarde si elle existe sinon on initialise une partie : c'est l'objet "jeux"
+	 # - On charge jeuxInitial qui est l'image  de carte
+	 # - On affiche la partie
+
     while True: 
         mon_codage = ("veuillez sélectionner votre N° de la carte  ou taper Q pour sortir : ")
         idCarteSelect = input(mon_codage)
@@ -66,8 +75,10 @@ def lanceRoboc():
 						  # On initialise la carte et on lit la carte de base
                     jeux=Carte(idCarteSelect,ListMaps[int(idCarteSelect)])
                     jeux.readCarte()
+					 # on charge la carte source initiale 
                 jeuxInitial=Carte(idCarteSelect,ListMaps[int(idCarteSelect)])
                 jeuxInitial.readCarte()
+					 # on affiche la partie 'jeux' avec l'image de la carte 'jeuxInitial'
                 jeux.afficheCarte(jeuxInitial)
 
 
@@ -76,6 +87,7 @@ def lanceRoboc():
 				# - Si Q on sort 
 				# - Si lettre OENS et pas suivant d'un nombre on redemande un autre déplacement
 				# - Si tout est Ok alors on calcule le déplacement & on affiche la carte
+				# - On effectue une sauvegarde
 
             while True:
                 mv = input("Entrer un déplacement : ")
